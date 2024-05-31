@@ -8,7 +8,7 @@ import MainPages from './components/mainpages/Pages'
 function App() {
   return (
     <DataProvider>
-      <Router>
+      <Router basename='/index.html'>
         <div className="App">
           <Header />
           <MainPages />
