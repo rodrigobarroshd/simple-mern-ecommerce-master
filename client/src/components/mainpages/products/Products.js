@@ -29,7 +29,7 @@ function Products() {
         try {
             setLoading(true)
             
-            const deleteProduct = axios.delete(`https://renderbackend-ecommerce.onrender.com/api/products/${id}`, {
+            const deleteProduct = axios.delete(`/api/products/${id}`, {
                 headers: {Authorization: token}
             })
 
