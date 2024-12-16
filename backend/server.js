@@ -6,11 +6,25 @@ const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
+const allowedOrigins = [
+    'http://localhost:10000', // Localhost for development
+    'https://ecommercesite-3a5b.onrender.com', // Production frontend URL
+  ];
+
+const options = {
+origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    callback(null, true); // Allow request
+    } else {
+    callback(new Error('Not allowed by CORS')); // Reject request
+    }
+},
+};
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ origin: 'https://ecommercesite-3a5b.onrender.com' }))
+app.use(cors(options));
 app.use(fileUpload({
     useTempFiles: true
 }))
