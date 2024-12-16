@@ -15,7 +15,7 @@ function Filters() {
         setCategory(e.target.value)
         setSearch('')
     }
-    console.log('Categories:', categories);
+
 
     return (
         <div className="filter_menu">
