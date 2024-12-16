@@ -7,6 +7,8 @@ import Filters from './Filters'
 import LoadMore from './LoadMore'
 
 
+
+
 function Products() {
     const state = useContext(GlobalState)
     const [products, setProducts] = state.productsAPI.products

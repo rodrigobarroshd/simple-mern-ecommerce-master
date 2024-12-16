@@ -11,6 +11,7 @@ function Categories() {
 
     const [onEdit, setOnEdit] = useState(false)
     const [id, setID] = useState('')
+    console.log(categories); // Adicione este log para verificar o valor de `categories`
 
     const createCategory = async e =>{
         e.preventDefault()

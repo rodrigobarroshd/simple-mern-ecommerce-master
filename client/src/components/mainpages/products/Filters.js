@@ -15,6 +15,7 @@ function Filters() {
         setCategory(e.target.value)
         setSearch('')
     }
+    console.log(categories); // Adicione este log para verificar o valor de `categories`
 
 
     return (
