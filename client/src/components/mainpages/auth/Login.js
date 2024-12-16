@@ -15,7 +15,8 @@ function Login() {
     const loginSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('/user/login', {...user})
+            await axios.post('https://renderbackend-ecommerce.onrender.com/user/login', {...user});
+
 
             localStorage.setItem('firstLogin', true)
             

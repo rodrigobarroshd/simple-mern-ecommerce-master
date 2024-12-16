@@ -59,7 +59,7 @@ function CreateProduct() {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/api/upload', formData, {
+            const res = await axios.post('https://renderbackend-ecommerce.onrender.com/api/upload', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
@@ -74,7 +74,7 @@ function CreateProduct() {
         try {
             if(!isAdmin) return alert("You're not an admin")
             setLoading(true)
-            await axios.post('/api/destroy', {public_id: product}, {
+            await axios.post('https://renderbackend-ecommerce.onrender.com/api/destroy', {public_id: product}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -96,11 +96,11 @@ function CreateProduct() {
             
 
             if(onEdit){
-                await axios.put(`/api/products/${product._id}`, {...product}, {
+                await axios.put(`https://renderbackend-ecommerce.onrender.com/api/products/${product._id}`, {...product}, {
                     headers: {Authorization: token}
                 })
             }else{
-                await axios.post('/api/products', {...product}, {
+                await axios.post('https://renderbackend-ecommerce.onrender.com/api/products', {...product}, {
                     headers: {Authorization: token}
                 })
             }
