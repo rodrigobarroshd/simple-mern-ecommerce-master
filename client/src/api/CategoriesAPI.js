@@ -2,24 +2,21 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 function CategoriesAPI() {
-    const [categories, setCategories] = useState([]); // Inicializado como um array vazio.
+    const [categories, setCategories] = useState([])
+    const [callback, setCallback] = useState(false)
 
-    useEffect(() => {
-        const getCategories = async () => {
-            try {
-                const res = await axios.get('https://renderbackend-ecommerce.onrender.com/api/category');
-                setCategories(res.data.categories || []); // Garante que seja um array.
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        getCategories();
-    }, []);
+    useEffect(() =>{
+        const getCategories = async () =>{
+            const res = await axios.get('/api/category')
+            setCategories(res.data)
+        }
 
+        getCategories()
+    },[callback])
     return {
         categories: [categories, setCategories],
-    };
+        callback: [callback, setCallback]
+    }
 }
-
 
 export default CategoriesAPI
