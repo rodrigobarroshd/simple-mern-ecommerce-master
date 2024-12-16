@@ -3,7 +3,8 @@ import {GlobalState} from '../../../GlobalState'
 
 function Filters() {
     const state = useContext(GlobalState)
-    const [categories] = state.categoriesAPI.categories
+    const [categories] = state.categoriesAPI.categories || [];
+
 
     const [category, setCategory] = state.productsAPI.category
     const [sort, setSort] = state.productsAPI.sort
@@ -14,6 +15,7 @@ function Filters() {
         setCategory(e.target.value)
         setSearch('')
     }
+    console.log('Categories:', categories);
 
     return (
         <div className="filter_menu">
@@ -21,15 +23,15 @@ function Filters() {
                 <span>Filtros: </span>
                 <select name="category" value={category} onChange={handleCategory} >
                     <option value=''>Todos</option>
-                    {
-                        categories.map(category => (
-                            <option value={"category=" + category._id} key={category._id}>
+                    {Array.isArray(categories) &&
+                        categories.map((category) => (
+                            <option value={'category=' + category._id} key={category._id}>
                                 {category.name}
                             </option>
-                        ))
-                    }
+                        ))}
                 </select>
             </div>
+            
 
             <input type="text" value={search} placeholder="  Pesquisar"
             onChange={e => setSearch(e.target.value.toLowerCase())} />
