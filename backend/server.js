@@ -11,20 +11,22 @@ const allowedOrigins = [
     'https://ecommercesite-3a5b.onrender.com', // Production frontend URL
   ];
 
-const options = {
-origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-    callback(null, true); // Allow request
-    } else {
-    callback(new Error('Not allowed by CORS')); // Reject request
-    }
-},
+  const corsOptions = {
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true); // Allow request
+        } else {
+            callback(new Error('Not allowed by CORS')); // Reject request
+        }
+    },
+    credentials: true, // Allow credentials (cookies)
 };
+
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors(options));
+app.use(cors(corsOptions));
 app.use(fileUpload({
     useTempFiles: true
 }))
