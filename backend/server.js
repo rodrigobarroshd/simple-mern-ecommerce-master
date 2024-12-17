@@ -7,26 +7,29 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 
 const allowedOrigins = [
-    'http://192.168.56.1:10000', 
+    'http://localhost:10000', 
     'https://ecommercesite-3a5b.onrender.com', // Production frontend URL
   ];
 
-  const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true); // Allow request
-        } else {
-            callback(new Error('Not allowed by CORS')); // Reject request
-        }
-    },
-    credentials: true, // Allow credentials (cookies)
-};
+//   const corsOptions = {
+//     origin: (origin, callback) => {
+//         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//             callback(null, true); // Allow request
+//         } else {
+//             callback(new Error('Not allowed by CORS')); // Reject request
+//         }
+//     },
+//     credentials: true, // Allow credentials (cookies)
+// };
 
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true, // Permite envio de cookies e headers com credenciais
+}));
 app.use(fileUpload({
     useTempFiles: true
 }))
