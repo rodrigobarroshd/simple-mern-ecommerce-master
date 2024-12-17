@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 
 const allowedOrigins = [
-    'http://192.168.56.1', 
+    'http://192.168.56.1:10000', 
     'https://ecommercesite-3a5b.onrender.com', // Production frontend URL
   ];
 
